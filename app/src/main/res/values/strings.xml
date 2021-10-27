@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">API_Application</string>
     <string name="kunne_ikke_laste_horoskop">Kunne ikke laste horoskop!</string>
+    <string name="Se_horoskop">Se ditt horoskop</string>
 
     /*this is an array of starsigns to the starsign spinner*/
     <string-array name="signs">
