@@ -18,7 +18,7 @@ class HoroskopActivity : AppCompatActivity() {
         setContentView(R.layout.activity_horoskop)
 
         /*geting the url from the main activity*/
-        val getUrl = intent.getStringExtra("url")
+        val getUrl : String? = intent.getStringExtra("url")
         val url : String = getUrl.toString()
 
         /*all the textViwes where i print the horoscope content*/
@@ -32,7 +32,7 @@ class HoroskopActivity : AppCompatActivity() {
         val description : TextView = findViewById(R.id.description)
 
         /*list of all the textViw for the horoscop*/
-        val textViewList = listOf(
+        val textViewList : List<TextView> = listOf(
             compability,
             number,
             time,
@@ -84,7 +84,7 @@ class HoroskopActivity : AppCompatActivity() {
     private fun formatResponse(resp : String) : List<String> {
         //trys the
         try {
-            val list = resp.split('"')
+            val list : List<String> = resp.split('"')
 
             /*returning an list of where it splits to get the content*/
             return listOf(

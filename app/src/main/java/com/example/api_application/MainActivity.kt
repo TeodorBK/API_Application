@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*create url function for making a url for diffrent starsign and days*/
+    /*createUrl function for making a url for diffrent starsign and days*/
     private fun createURL(sign : String, date: String) : String  {
         return "https://aztro.sameerkumar.website/?sign=$sign&day=$date"
     }
