@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">API_Application</string>
+    <string name="kunne_ikke_laste_horoskop">Kunne ikke laste horoskop!</string>
 
+    /*this is an array of starsigns to the starsign spinner*/
     <string-array name="signs">
         <item>Aries</item>
         <item>Taurus</item>
@@ -16,6 +18,7 @@
         <item>Pisces</item>
     </string-array>
 
+    /*this is a array of days for det days spinner*/
     <string-array name="days">
         <item>Today</item>
         <item>Tomorrow</item>

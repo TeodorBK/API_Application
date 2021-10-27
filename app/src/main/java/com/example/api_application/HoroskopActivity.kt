@@ -10,8 +10,8 @@ import com.android.volley.toolbox.Volley
 
 class HoroskopActivity : AppCompatActivity() {
 
-    //Lager en global variabel for request-kø
-    var requestQueue : RequestQueue? = null
+    //makes a variable for request-que
+    private var requestQueue : RequestQueue? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +31,8 @@ class HoroskopActivity : AppCompatActivity() {
         val mood : TextView = findViewById(R.id.mood)
         val description : TextView = findViewById(R.id.description)
 
-        /*list of all the textViw*/
-        val textViewList = listOf<TextView>(
+        /*list of all the textViw for the horoscop*/
+        val textViewList = listOf(
             compability,
             number,
             time,
@@ -43,27 +43,28 @@ class HoroskopActivity : AppCompatActivity() {
             description
         )
 
-        /*caling the horoscope function*/
+        /*calling the horoscope function*/
         APICall(textViewList, url)
     }
 
+    /*API Call function*/
     private fun APICall(views: List<TextView>, url: String) {
         requestQueue = Volley.newRequestQueue(this)
 
-        //makes an request
+        //makes an request to the horoskop api
         val request = StringRequest(
             Request.Method.POST, url,
             { response ->
                 //edits the answer
                 val listOfContent = formatResponse(response)
                 for(i in views) {
-                    val  index = views.indexOf(i)
+                    val index = views.indexOf(i)
                     i.text = listOfContent[index]
                 }
             },
             { error ->
                 //handles if it is an error
-                views[0].text = "Kunne ikke laste horoskop!"
+                views[0].text = getString(R.string.kunne_ikke_laste_horoskop)
             }
         )
         //gives request an tag
@@ -81,11 +82,12 @@ class HoroskopActivity : AppCompatActivity() {
 
     /*formating the respons from apiCall*/
     private fun formatResponse(resp : String) : List<String> {
+        //trys the
         try {
             val list = resp.split('"')
 
-            /*returning a list of where it splits to get the content*/
-            val listOfContent = listOf<String>(
+            /*returning an list of where it splits to get the content*/
+            return listOf(
                 list[3],
                 list[7],
                 list[11],
@@ -95,7 +97,6 @@ class HoroskopActivity : AppCompatActivity() {
                 list[27],
                 list[31]
             )
-            return listOfContent
         } catch (exception: ArrayIndexOutOfBoundsException) {
             return listOf("Kunne ikke laste horoskop!")
         }

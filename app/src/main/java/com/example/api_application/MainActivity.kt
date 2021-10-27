@@ -3,13 +3,7 @@ package com.example.api_application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.*
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,34 +12,34 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         /*spinner for sign*/
-        val spinner_signs: Spinner = findViewById(R.id.spinner_signs)
+        val spinnerSigns: Spinner = findViewById(R.id.spinnerSigns)
         ArrayAdapter.createFromResource(
             this,
             R.array.signs,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner_signs.adapter = adapter
+            spinnerSigns.adapter = adapter
         }
 
         /*spinner for day*/
-        val spinner_days: Spinner = findViewById(R.id.spinner_days)
+        val spinnerDays: Spinner = findViewById(R.id.spinnerDays)
         ArrayAdapter.createFromResource(
             this,
             R.array.days,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner_days.adapter = adapter
+            spinnerDays.adapter = adapter
         }
 
         /*start button who makes horoskopet*/
         val start : Button = findViewById(R.id.startBtn)
 
-        /*onClick when start Button is clicken*/
+        /*onClick event for sending over url and starting new activity*/
         start.setOnClickListener {
-            val selectedSign = spinner_signs.selectedItem.toString()
-            val selectedDay = spinner_days.selectedItem.toString()
+            val selectedSign : String = spinnerSigns.selectedItem.toString()
+            val selectedDay : String = spinnerDays.selectedItem.toString()
             val url = createURL(selectedSign, selectedDay)
 
             /*creating url based on item selected on the spinners and sending it to the next activity*/
@@ -55,8 +49,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*create url function*/
-    fun createURL(sign : String, date: String) : String  {
+    /*create url function for making a url for diffrent starsign and days*/
+    private fun createURL(sign : String, date: String) : String  {
         return "https://aztro.sameerkumar.website/?sign=$sign&day=$date"
     }
 }
