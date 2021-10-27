@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         start.setOnClickListener {
             val selectedSign : String = spinnerSigns.selectedItem.toString()
             val selectedDay : String = spinnerDays.selectedItem.toString()
-            val url = createURL(selectedSign, selectedDay)
+            val url : String = createURL(selectedSign, selectedDay)
 
             /*creating url based on item selected on the spinners and sending it to the next activity*/
             val intent = Intent(this@MainActivity,HoroskopActivity::class.java)
